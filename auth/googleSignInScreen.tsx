@@ -3,6 +3,7 @@ import * as WebBrowser from "expo-web-browser";
 import { useConstants } from "../constants/ConstantsContext";
 import { useAuth, AuthContext } from "./AuthContext";
 import { Platform, View, Button } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Text,
   Switch,
@@ -33,10 +34,13 @@ export function GoogleSignInScreen({ navigation }) {
   };
 
   return (
+
+    <SafeAreaView>
     <View>
       <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
       <Text>{result && JSON.stringify(result)}</Text>
     </View>
+    </SafeAreaView>
   );
 }
 /*
@@ -73,4 +77,5 @@ export function SuccessRedirScreen() {
 }
 
 /*
+transfer to local signin
  */

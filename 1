@@ -1,0 +1,87 @@
+import React from "react";
+import { FlatList, StyleSheet, View, Text, ScrollView } from "react-native";
+import { useLinkTo, Link } from "@react-navigation/native";
+import {
+  Title,
+  Button,
+  Divider,
+  TextInput,
+  Avatar,
+  useTheme,
+} from "react-native-paper";
+import { io } from "socket.io-client";
+import { SocketContext } from "../socket/socket";
+
+import { useQuery } from "@apollo/client";
+//import {GET_USERNAME_BY_ID } from '../graphql/requests', get username by userID
+//import {GET_CONVO_LIST_OF_CURRENT_USER } from '../graphql/requests' //should be
+import { GET_ALL_CONVO } from "../graphql/requests"; //temp use all convo
+
+export default function InboxScreen({ navigation }) {
+  const { data, loading, error } = useQuery(GET_ALL_CONVO);
+  console.log(data);
+  const { colors } = useTheme();
+
+  if (loading) {
+    return (
+      <View>
+        <Title>Loading</Title>
+      </View>
+    );
+  }
+
+  if (error) {
+    console.log(error);
+    return (
+      <View>
+        <Title>Error</Title>
+      </View>
+    );
+  }
+
+  // should be icon button  // avatar
+  function renderConvoIcon({ item: convo }) {
+    return (
+      <View>
+        <Link to={`/main/conversation/${convo.conversationID}`}>
+          {convo.conversationID}
+        </Link>
+      </View>
+    );
+  }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{ flex: 1.5, backgroundColor: "blue" }}>
+          <FlatList
+            //      style={styles.productsList}
+            //      contentContainerStyle={styles.productsListContainer}
+            //      ItemSeparatorComponent = {Divider}
+            data={data.getAllConvo}
+            renderItem={renderConvoIcon}
+          />
+
+          <Text>Chat Icons </Text>
+        </View>
+        <View style={{ flex: 8.5 }}>
+          <Text> Create New Message</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+// justifyContent: 'flex-end'
+//style={{ flexDirection: 'column' }}
+/*
+   <TextInput
+	       label="Type new Message"
+               value={message}
+	       onChangeText={message=> setMessage(message)}
+	     />
+
+//  const socket = io("http://localhost:5000",{ autoConnect: false } , {withCredentials: true,})
+ //const socket = useRef();
+
+
+*/

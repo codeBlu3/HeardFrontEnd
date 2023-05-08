@@ -16,9 +16,11 @@ import {
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
 import { CustomDrawerContent } from "../navigation/CustomDrawerContent";
+import { CustomNavigationBar} from "../navigation/CustomNavigationBar";
 
 import { UserInfoScreen } from "./userInfo/UserInfoScreen";
 import { MessagingScreen } from "./messaging/MessagingScreen";
+import { MessagingStack} from "./messaging/MessagingStack";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 const Drawer = createDrawerNavigator();
@@ -40,23 +42,15 @@ export function MainDraw() {
         header: (props) => <CustomNavigationBar {...props} />,
       }}
     >
-      <Drawer.Screen name="Messages" component={MessagingScreen} />
+      <Drawer.Screen name="Messages" component={MessagingStack} />
       <Drawer.Screen name="UserInfo" component={UserInfoScreen} />
     </Drawer.Navigator>
   );
 }
 
-function CustomNavigationBar({ navigation }) {
-  const { breakpoint } = useBreakpoint();
-  const theme = useTheme();
-  return (
-    <Appbar.Header>
-      <Appbar.Action icon="menu" onPress={() => navigation.openDrawer()} />
-      <Appbar.Content title="Heard" />
-      <Appbar.Action icon="bell" onPress={() => navigation.closeDrawer()} />
-      <DarkModeSwitch />
-    </Appbar.Header>
-  );
+
+
+
 
   /*
 // Dump codes
@@ -78,8 +72,8 @@ function CustomNavigationBar({ navigation }) {
 
         style={{ alignItems: "center" }}
  
-  */
 }
+  */
 //screens
 /*
 import { UploadScreen } from "../modules/upload/UploadScreen";

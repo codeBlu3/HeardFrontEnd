@@ -60,33 +60,9 @@ export const AuthNavigator = () => {
 };
 
 /*
-
+add authenticated providers here
+add graphql, add socketio
 <SafeAreaView >
 </SafeAreaView >
 
-
 */
-
-import { StyleSheet, Text, View } from "react-native";
-import { useThemeContext } from "../theme/ThemeContext";
-function SampleComponent() {
-  const { useTranslate } = useLocale();
-  const { authState } = useAuth(); // typescript
-  const { themeUsed } = useThemeContext(); // typescript
-
-  const welcome = useTranslate("welcome"); //
-  return (
-    <View style={styles.container}>
-      <Text>Here's to the new start</Text>
-      <Text>{welcome}</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
