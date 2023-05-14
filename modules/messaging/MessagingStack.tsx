@@ -1,7 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {InboxScreen} from "./InboxScreen"
-import {MessagingScreen} from "./MessagingScreen"
+import {ConversationScreen} from "./ConversationScreen"
+import {NewMessageScreen} from "./NewMessageScreen"
 
 export function MessagingStack() {
   const MessagingStackNav = createNativeStackNavigator();
@@ -11,9 +12,14 @@ export function MessagingStack() {
         name="Inbox"
         component={InboxScreen}
       />
+<MessagingStackNav.Screen
+        name="NewMessage"
+        component={NewMessageScreen}
+      />
+
       <MessagingStackNav.Screen
-        name="Messaging"
-        component={MessagingScreen}
+        name="Conversation"
+        component={ConversationScreen}
       />
  
            </MessagingStackNav.Navigator>

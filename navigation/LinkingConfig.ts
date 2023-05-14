@@ -9,7 +9,14 @@ export default {
         screens: {
           Uploads: "uploads",
           UserInfo: "userinfo",
-          Messages: "messages",
+          Messages: {
+	    path: "messages",
+            screens: {
+              Inbox: "inbox",
+              NewMessage: "newmessage",
+             Conversation: "conversation/:conversationID",
+            },
+	  },
           Job: {
             path: "jobs",
             screens: {
@@ -31,3 +38,4 @@ export default {
     },
   },
 };
+

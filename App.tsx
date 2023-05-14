@@ -10,8 +10,8 @@ import { LocaleProvider } from "./i8n/TranslationContext";
 import { PaperWrapper, ThemeProvider } from "./theme/ThemeContext";
 import { NavigationWrapper } from "./navigation/NavigationWrapper";
 import { AuthProvider } from "./auth/AuthContext";
-import { GraphqlProvider } from "./graphql/GraphqlContext";
-import { SocketProvider } from "./socket/SocketContext";
+//import { GraphqlProvider } from "./graphql/GraphqlContext";
+//import { SocketProvider } from "./socket/SocketContext";
 import { AuthNavigator } from "./auth/AuthNavigator";
 
 export default function App() {
@@ -23,9 +23,7 @@ export default function App() {
             <PaperWrapper>
               <NavigationWrapper>
                 <AuthProvider>
-                  <GraphqlProvider>
                     <AuthNavigator />
-                  </GraphqlProvider>
                 </AuthProvider>
               </NavigationWrapper>
             </PaperWrapper>
@@ -43,8 +41,15 @@ export default function App() {
     <SafeAreaView>
     </SafeAreaView>
 // transfer this to authenticated user
+                  <GraphqlProvider>
+                  </GraphqlProvider>
 	  <SocketProvider>
 	  </SocketProvider>
+
+                  <GraphqlProvider>
+	  <SocketProvider>
+	  </SocketProvider>
+                  </GraphqlProvider>
 */
 //add stack navigator
 //<SampleComponent />

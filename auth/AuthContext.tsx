@@ -1,6 +1,7 @@
 import React, { useContext, useReducer, createContext } from "react";
 import { useConstants } from "../constants/ConstantsContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+//somehow flawed tong authentication logig
 
 export const AuthContext = React.createContext({
   localSignIn: () => {},
@@ -9,6 +10,7 @@ export const AuthContext = React.createContext({
   signUp: () => {},
   setCurrentAuthenticatedUser: () => {},
   currentAuthenticatedUser: null,
+  currentUserName: null,
   authState: {},
 });
 //revert to  react navigation style
@@ -49,6 +51,8 @@ export const AuthProvider = ({ children }: any) => {
   const [currentAuthenticatedUser, setCurrentAuthenticatedUser] =
     React.useState("");
 
+  const [currentUserName,setCurrentUserName ] =
+    React.useState("");
   const SERVERHOSTNAME = useConstants();
 
   const [authState, dispatch] = React.useReducer(
@@ -70,14 +74,36 @@ export const AuthProvider = ({ children }: any) => {
             }
           );
           // direct signIn() /not possible have to use context
-          console.log(resp);
-          let res2 = await fetch(`http://${SERVERHOSTNAME}:4000/user`, {
+//          console.log(resp);
+ //         let res2 = await fetch(`http://${SERVERHOSTNAME}:4000/user`, {
+ //           credentials: "include",
+ //         });
+  //        console.log(res2);
+        const getUserToken = async () => {
+          let resp = await fetch(`http://${SERVERHOSTNAME}:4000/user`, {
             credentials: "include",
           });
-          console.log(res2);
-          if (res2.status == 200) {
-            const result = await res2.json();
-            const resUserToken = await result.userToken;
+          console.log(resp);
+
+          let result = await resp.json();
+          console.log(result);
+          const token = await result.userToken;
+          const userID = await result.userID;
+          const username = await result.username;
+          await AsyncStorage.setItem("userToken", token);
+          await AsyncStorage.setItem("userID", userID);
+          setCurrentAuthenticatedUser(userID);
+	  setCurrentUserName(username)
+          //get user preferences
+          return token;
+        };
+
+
+          if (resp.status == 200) {
+            //const result = await res2.json();
+            //const resUserToken = await result.userToken;
+
+          const userToken = await getUserToken();
             dispatch({ type: "RESTORE_TOKEN", token: userToken });
             //console.log(resUserToken);
             //console.log(userToken);
@@ -117,6 +143,7 @@ export const AuthProvider = ({ children }: any) => {
         const response = await fetch(postUrl, fetchOptions);
         //console.log(response);
         let result = await response.json();
+
         const getUserToken = async () => {
           let resp = await fetch(`http://${SERVERHOSTNAME}:4000/user`, {
             credentials: "include",
@@ -127,9 +154,11 @@ export const AuthProvider = ({ children }: any) => {
           console.log(result);
           const token = await result.userToken;
           const userID = await result.userID;
+          const username = await result.username;
           await AsyncStorage.setItem("userToken", token);
           await AsyncStorage.setItem("userID", userID);
           setCurrentAuthenticatedUser(userID);
+	  setCurrentUserName(username)
           //get user preferences
           return token;
         };
@@ -185,6 +214,7 @@ export const AuthProvider = ({ children }: any) => {
       },
 
       currentAuthenticatedUser,
+  currentUserName,
       setCurrentAuthenticatedUser,
       authState,
     }),

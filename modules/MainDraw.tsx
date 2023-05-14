@@ -13,13 +13,16 @@ import {
 //import { PreferencesContext } from "../themes/PreferencesContext";
 
 //import { AuthContext } from "../auth/AuthContext";
+
+import { GraphqlProvider } from "../graphql/GraphqlContext";
+import { SocketProvider } from "../socket/SocketContext";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
 import { CustomDrawerContent } from "../navigation/CustomDrawerContent";
 import { CustomNavigationBar} from "../navigation/CustomNavigationBar";
 
 import { UserInfoScreen } from "./userInfo/UserInfoScreen";
-import { MessagingScreen } from "./messaging/MessagingScreen";
+//import { MessagingScreen } from "./messaging/MessagingScreen";
 import { MessagingStack} from "./messaging/MessagingStack";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -35,8 +38,11 @@ const DarkModeSwitch = () => {
 export function MainDraw() {
   const { breakpoint } = useBreakpoint();
   return (
+
+                  <GraphqlProvider>
+	  <SocketProvider>
     <Drawer.Navigator
-      initialRouteName="UserInfo"
+      initialRouteName="Messages"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         header: (props) => <CustomNavigationBar {...props} />,
@@ -45,6 +51,8 @@ export function MainDraw() {
       <Drawer.Screen name="Messages" component={MessagingStack} />
       <Drawer.Screen name="UserInfo" component={UserInfoScreen} />
     </Drawer.Navigator>
+	  </SocketProvider>
+                  </GraphqlProvider>
   );
 }
 

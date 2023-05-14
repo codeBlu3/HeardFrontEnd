@@ -1,6 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuth } from "../auth/AuthContext";
 import { useLocale } from "../i8n/TranslationContext";
+
+import { GraphqlProvider } from "../graphql/GraphqlContext";
+import { SocketProvider } from "../socket/SocketContext";
+
 import { SignUpScreen } from "../auth/signUpScreen";
 import { SignInScreen } from "../auth/signInScreen";
 import {
@@ -52,6 +56,7 @@ export const AuthNavigator = () => {
         </AuthStack.Group>
       ) : (
         <AuthStack.Group screenOptions={{ headerShown: false }}>
+
           <AuthStack.Screen name="MainDraw" component={MainDraw} />
         </AuthStack.Group>
       )}
@@ -62,6 +67,7 @@ export const AuthNavigator = () => {
 /*
 add authenticated providers here
 add graphql, add socketio
+
 <SafeAreaView >
 </SafeAreaView >
 
