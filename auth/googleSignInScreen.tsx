@@ -34,12 +34,11 @@ export function GoogleSignInScreen({ navigation }) {
   };
 
   return (
-
     <SafeAreaView>
-    <View>
-      <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
-      <Text>{result && JSON.stringify(result)}</Text>
-    </View>
+      <View>
+        <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
+        <Text>{result && JSON.stringify(result)}</Text>
+      </View>
     </SafeAreaView>
   );
 }

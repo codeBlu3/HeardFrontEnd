@@ -1,8 +1,4 @@
-
-import {
-  useTheme,
-  Appbar,
-} from "react-native-paper";
+import { useTheme, Appbar } from "react-native-paper";
 
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
@@ -17,4 +13,4 @@ export function CustomNavigationBar({ navigation }) {
     </Appbar.Header>
   );
 }
-      //<DarkModeSwitch />
+//<DarkModeSwitch />

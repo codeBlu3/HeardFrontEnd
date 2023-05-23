@@ -19,11 +19,11 @@ import { SocketProvider } from "../socket/SocketContext";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 
 import { CustomDrawerContent } from "../navigation/CustomDrawerContent";
-import { CustomNavigationBar} from "../navigation/CustomNavigationBar";
+import { CustomNavigationBar } from "../navigation/CustomNavigationBar";
 
 import { UserInfoScreen } from "./userInfo/UserInfoScreen";
 //import { MessagingScreen } from "./messaging/MessagingScreen";
-import { MessagingStack} from "./messaging/MessagingStack";
+import { MessagingStack } from "./messaging/MessagingStack";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 const Drawer = createDrawerNavigator();
@@ -38,29 +38,24 @@ const DarkModeSwitch = () => {
 export function MainDraw() {
   const { breakpoint } = useBreakpoint();
   return (
-
-                  <GraphqlProvider>
-	  <SocketProvider>
-    <Drawer.Navigator
-      initialRouteName="Messages"
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-      screenOptions={{
-        header: (props) => <CustomNavigationBar {...props} />,
-      }}
-    >
-      <Drawer.Screen name="Messages" component={MessagingStack} />
-      <Drawer.Screen name="UserInfo" component={UserInfoScreen} />
-    </Drawer.Navigator>
-	  </SocketProvider>
-                  </GraphqlProvider>
+    <GraphqlProvider>
+      <SocketProvider>
+        <Drawer.Navigator
+          initialRouteName="Messages"
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          screenOptions={{
+            header: (props) => <CustomNavigationBar {...props} />,
+          }}
+        >
+          <Drawer.Screen name="Messages" component={MessagingStack} />
+          <Drawer.Screen name="UserInfo" component={UserInfoScreen} />
+        </Drawer.Navigator>
+      </SocketProvider>
+    </GraphqlProvider>
   );
 }
 
-
-
-
-
-  /*
+/*
 // Dump codes
 
         style = {{

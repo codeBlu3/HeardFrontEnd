@@ -56,7 +56,6 @@ export const AuthNavigator = () => {
         </AuthStack.Group>
       ) : (
         <AuthStack.Group screenOptions={{ headerShown: false }}>
-
           <AuthStack.Screen name="MainDraw" component={MainDraw} />
         </AuthStack.Group>
       )}

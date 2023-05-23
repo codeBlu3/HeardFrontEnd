@@ -6,4 +6,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  bold: { fontWeight: "bold" },
+  italic: { fontStyle: "italic" },
+  boldItalic: { fontWeight: "bold", fontStyle: "italic" },
 });

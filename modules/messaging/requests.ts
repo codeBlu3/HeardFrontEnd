@@ -9,9 +9,9 @@ export const GET_ALL_CONVO = gql`
   }
 `;
 
-export const GET_ALL_USERS= gql`
-  query GetAllUsers{
-    getAllUsers{
+export const GET_ALL_USERS = gql`
+  query GetAllUsers {
+    getAllUsers {
       userID
     }
   }

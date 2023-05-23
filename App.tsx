@@ -23,7 +23,7 @@ export default function App() {
             <PaperWrapper>
               <NavigationWrapper>
                 <AuthProvider>
-                    <AuthNavigator />
+                  <AuthNavigator />
                 </AuthProvider>
               </NavigationWrapper>
             </PaperWrapper>

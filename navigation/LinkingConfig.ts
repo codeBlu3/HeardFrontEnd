@@ -1,4 +1,5 @@
 import * as Linking from "expo-linking";
+import { MessagingNavConfig } from "../modules/messaging/NavConfig";
 
 export default {
   prefixes: [Linking.makeUrl("/")],
@@ -9,14 +10,8 @@ export default {
         screens: {
           Uploads: "uploads",
           UserInfo: "userinfo",
-          Messages: {
-	    path: "messages",
-            screens: {
-              Inbox: "inbox",
-              NewMessage: "newmessage",
-             Conversation: "conversation/:conversationID",
-            },
-	  },
+          ...MessagingNavConfig,
+
           Job: {
             path: "jobs",
             screens: {
@@ -39,3 +34,14 @@ export default {
   },
 };
 
+/*
+          Messages: {
+	    path: "messages",
+            screens: {
+              Inbox: "inbox",
+              NewMessage: "newmessage",
+             Conversation: "conversation/:conversationID",
+            },
+	  },
+
+*/

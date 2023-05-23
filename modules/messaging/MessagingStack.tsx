@@ -1,18 +1,18 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {InboxScreen} from "./InboxScreen"
-import {ConversationScreen} from "./ConversationScreen"
-import {NewMessageScreen} from "./NewMessageScreen"
+import { InboxScreen } from "./InboxScreen";
+import { ConversationScreen } from "./ConversationScreen";
+import { NewMessageScreen } from "./NewMessageScreen";
 
 export function MessagingStack() {
   const MessagingStackNav = createNativeStackNavigator();
- return (
-    <MessagingStackNav.Navigator initialRouteName="Inbox" screenOptions={{ headerShown: false }}>
+  return (
+    <MessagingStackNav.Navigator
+      initialRouteName="Inbox"
+      screenOptions={{ headerShown: false }}
+    >
+      <MessagingStackNav.Screen name="Inbox" component={InboxScreen} />
       <MessagingStackNav.Screen
-        name="Inbox"
-        component={InboxScreen}
-      />
-<MessagingStackNav.Screen
         name="NewMessage"
         component={NewMessageScreen}
       />
@@ -21,10 +21,8 @@ export function MessagingStack() {
         name="Conversation"
         component={ConversationScreen}
       />
- 
-           </MessagingStackNav.Navigator>
+    </MessagingStackNav.Navigator>
   );
-
 }
 
 /*
